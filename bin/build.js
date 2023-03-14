@@ -5,7 +5,7 @@ const buildDirectory = 'dist';
 const production = process.env.NODE_ENV === 'production';
 
 // Config entrypoint files
-const entryPoints = ['src/cms/populate-external-data/index.ts'];
+const entryPoints = ['src/cms/populate-external-data/index.js'];
 
 /**
  * Default Settings
@@ -31,7 +31,7 @@ else {
     .serve(
       {
         servedir: buildDirectory,
-        port: 3000,
+        port: 3001,
       },
       defaultSettings
     )
