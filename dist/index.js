@@ -9,7 +9,7 @@
       const [firstItem] = listInstance.items;
       const oppTemplateElement = firstItem.element;
       const opportunities = await fetchOpportunities();
-      console.log("opportunities are from local ", opportunities);
+      console.log("opportunities ", opportunities);
       listInstance.clearItems();
       const newOpportunities = opportunities.map((eachOpp) => createItem(eachOpp, oppTemplateElement));
       await listInstance.addItems(newOpportunities);

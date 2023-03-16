@@ -20,7 +20,7 @@ window.fsAttributes.push([
 
     // Fetch external data
     const opportunities = await fetchOpportunities();
-    console.log('opportunities are from local ', opportunities);
+    console.log('opportunities ', opportunities);
 
     // Remove existing items
     listInstance.clearItems();
