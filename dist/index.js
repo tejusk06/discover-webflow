@@ -9,10 +9,11 @@
       const [firstItem] = listInstance.items;
       const oppTemplateElement = firstItem.element;
       const opportunities = await fetchOpportunities();
-      console.log("opportunities are ", opportunities);
+      console.log("opportunities are from local ", opportunities);
       listInstance.clearItems();
       const newOpportunities = opportunities.map((eachOpp) => createItem(eachOpp, oppTemplateElement));
       await listInstance.addItems(newOpportunities);
+      moveFields();
       filtersInstance.storeFiltersData();
     }
   ]);
@@ -59,7 +60,7 @@
     if (fieldCategory && eachOpp.fieldCategories) {
       eachOpp.fieldCategories.split(",").forEach((eachFieldCategory) => {
         const newFieldCategory = fieldCategory.cloneNode(true);
-        newFieldCategory.textContent = eachFieldCategory;
+        newFieldCategory.textContent = eachFieldCategory.trim();
         fieldCategory.parentElement.append(newFieldCategory);
       });
       fieldCategory.style.display = "none";
@@ -92,7 +93,7 @@
     if (fieldCategoryFilter && eachOpp.fieldCategories) {
       eachOpp.fieldCategories.split(",").forEach((eachFieldCategory) => {
         const newFieldCategory = fieldCategoryFilter.cloneNode(true);
-        newFieldCategory.textContent = eachFieldCategory;
+        newFieldCategory.textContent = eachFieldCategory.trim();
         fieldCategoryFilter.parentElement.append(newFieldCategory);
       });
       fieldCategoryFilter.removeAttribute("fs-cmsfilter-field");
@@ -108,7 +109,7 @@
     if (ageFilter && eachOpp.ageValues) {
       eachOpp.ageValues.split(",").forEach((eachAge) => {
         const newAge = ageFilter.cloneNode(true);
-        newAge.textContent = eachAge;
+        newAge.textContent = eachAge.trim();
         ageFilter.parentElement.append(newAge);
       });
       ageFilter.removeAttribute("fs-cmsfilter-field");
@@ -138,7 +139,7 @@
     if (timetableFilter && eachOpp.timetable) {
       eachOpp.timetable.split(",").forEach((eachTimetable) => {
         const newTimetable = timetableFilter.cloneNode(true);
-        newTimetable.textContent = eachTimetable;
+        newTimetable.textContent = eachTimetable.trim();
         timetableFilter.parentElement.append(newTimetable);
       });
       timetableFilter.removeAttribute("fs-cmsfilter-field");
@@ -164,7 +165,7 @@
     if (locationFilter && eachOpp.location) {
       eachOpp.location.split(",").forEach((eachLocation) => {
         const newLocation = locationFilter.cloneNode(true);
-        newLocation.textContent = eachLocation;
+        newLocation.textContent = eachLocation.trim();
         locationFilter.parentElement.append(newLocation);
       });
       locationFilter.removeAttribute("fs-cmsfilter-field");
@@ -188,5 +189,17 @@
     if (financialAidFilter)
       financialAidFilter.textContent = eachOpp.financialAid ? "Financial Aid" : "";
     return newItem;
+  };
+  var moveFields = () => {
+    const fields = document.querySelectorAll('[discover-element="field-wrap"]');
+    const fieldCategories = document.querySelectorAll('[discover-element="field-category-wrap"]');
+    fieldCategories.forEach((eachFieldCategory) => {
+      fields.forEach((eachField) => {
+        if (eachFieldCategory.querySelector(".home_filters_checkbox-label").innerHTML === eachField.querySelector(".home_filters_field-category").innerHTML) {
+          eachFieldCategory.querySelector(".home_filters_field-wrap").append(eachField);
+        }
+      });
+    });
+    console.log({ fields, fieldCategories });
   };
 })();
