@@ -9,7 +9,7 @@
       const [firstItem] = listInstance.items;
       const oppTemplateElement = firstItem.element;
       const opportunities = await fetchOpportunities();
-      console.log("opportunities ", opportunities);
+      console.log("opportunities", opportunities);
       listInstance.clearItems();
       const newOpportunities = opportunities.map((eachOpp) => createItem(eachOpp, oppTemplateElement));
       await listInstance.addItems(newOpportunities);
@@ -58,7 +58,7 @@
       name.textContent = eachOpp.name;
     }
     if (fieldCategory && eachOpp.fieldCategories) {
-      eachOpp.fieldCategories.split(",").forEach((eachFieldCategory) => {
+      eachOpp.fieldCategories.split(", ").sort().forEach((eachFieldCategory) => {
         const newFieldCategory = fieldCategory.cloneNode(true);
         newFieldCategory.textContent = eachFieldCategory.trim();
         fieldCategory.parentElement.append(newFieldCategory);

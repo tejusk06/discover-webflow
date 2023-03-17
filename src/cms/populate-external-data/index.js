@@ -20,7 +20,7 @@ window.fsAttributes.push([
 
     // Fetch external data
     const opportunities = await fetchOpportunities();
-    console.log('opportunities ', opportunities);
+    console.log('opportunities', opportunities);
 
     // Remove existing items
     listInstance.clearItems();
@@ -108,12 +108,15 @@ const createItem = (eachOpp, templateElement) => {
     name.textContent = eachOpp.name;
   }
   if (fieldCategory && eachOpp.fieldCategories) {
-    eachOpp.fieldCategories.split(',').forEach((eachFieldCategory) => {
-      const newFieldCategory = fieldCategory.cloneNode(true);
-      newFieldCategory.textContent = eachFieldCategory.trim();
+    eachOpp.fieldCategories
+      .split(', ')
+      .sort()
+      .forEach((eachFieldCategory) => {
+        const newFieldCategory = fieldCategory.cloneNode(true);
+        newFieldCategory.textContent = eachFieldCategory.trim();
 
-      fieldCategory.parentElement.append(newFieldCategory);
-    });
+        fieldCategory.parentElement.append(newFieldCategory);
+      });
     // Hide the type template
     fieldCategory.style.display = 'none';
   } else if (fieldCategory) {
