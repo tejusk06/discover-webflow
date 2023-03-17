@@ -195,7 +195,7 @@
     const fieldCategories = document.querySelectorAll('[discover-element="field-category-wrap"]');
     fieldCategories.forEach((eachFieldCategory) => {
       fields.forEach((eachField) => {
-        if (eachFieldCategory.querySelector(".home_filters_checkbox-label").innerHTML === eachField.querySelector(".home_filters_field-category").innerHTML) {
+        if (eachFieldCategory.querySelector(".home_filters_checkbox-label").innerHTML === eachField.querySelector(".home_filters_field-category").innerHTML && eachFieldCategory.querySelector(".home_filters_checkbox-label").innerHTML !== eachField.querySelector(".home_filters_checkbox-label").innerHTML) {
           eachFieldCategory.querySelector(".home_filters_field-wrap").append(eachField);
         }
       });
