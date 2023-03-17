@@ -49,6 +49,11 @@
     const costFilter = newItem.querySelector('[fs-cmsfilter-field="cost"]');
     const financialAidFilter = newItem.querySelector('[fs-cmsfilter-field="financial-aid"]');
     itemWrap.href = `opportunity/${eachOpp.slug}`;
+    itemWrap.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.setItem("queryParam", `${window.location.search}`);
+      window.location.href = itemWrap.href;
+    });
     if (image && eachOpp.organizationImageUrl) {
       image.src = eachOpp.organizationImageUrl;
       image.classList.remove("w-dyn-bind-empty");
