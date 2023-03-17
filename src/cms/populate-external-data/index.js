@@ -284,6 +284,20 @@ const moveFields = () => {
     });
   });
 
+  const locations = document.querySelectorAll('[discover-element="location-wrap"]');
+  const locationCategories = document.querySelectorAll('[discover-element="location-category-wrap"]');
+
+  locationCategories.forEach((eachLocationCategory) => {
+    locations.forEach((eachLocation) => {
+      if (
+        eachLocationCategory.querySelector('.home_filters_checkbox-label').innerHTML ===
+        eachLocation.querySelector('.home_filters_location-category').innerHTML
+      ) {
+        eachLocationCategory.querySelector('.home_filters_location-wrap').append(eachLocation);
+      }
+    });
+  });
+
   // Fixing scroll position
 
   let scrollPosition;
