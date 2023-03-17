@@ -200,6 +200,15 @@
         }
       });
     });
+    let scrollPosition;
+    setInterval(() => {
+      scrollPosition = $(window).scrollTop();
+    }, 500);
+    document.addEventListener("click", function(e) {
+      if (e.target.type === "checkbox") {
+        $(window).scrollTop(scrollPosition);
+      }
+    });
     console.log({ fields, fieldCategories });
   };
 })();
