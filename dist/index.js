@@ -14,6 +14,13 @@
       const newOpportunities = opportunities.map((eachOpp) => createItem(eachOpp, oppTemplateElement));
       await listInstance.addItems(newOpportunities);
       moveFields();
+      const clearFiltersLink = document.querySelector('[discover-element="clear-filters"]');
+      clearFiltersLink.addEventListener("click", () => {
+        const tagCloseLinks = document.querySelectorAll('[fs-cmsfilter-element="tag-remove"]');
+        tagCloseLinks.forEach((eachTagClose) => {
+          eachTagClose.click();
+        });
+      });
       filtersInstance.storeFiltersData();
     }
   ]);

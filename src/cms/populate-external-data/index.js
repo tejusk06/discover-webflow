@@ -34,7 +34,15 @@ window.fsAttributes.push([
     // Move fields into their field categories
     moveFields();
 
-    // TODO Insert the locations
+    // Add logic to clear all tags when "Clear filters" is clicked
+    const clearFiltersLink = document.querySelector('[discover-element="clear-filters"]');
+
+    clearFiltersLink.addEventListener('click', () => {
+      const tagCloseLinks = document.querySelectorAll('[fs-cmsfilter-element="tag-remove"]');
+      tagCloseLinks.forEach((eachTagClose) => {
+        eachTagClose.click();
+      });
+    });
 
     // Sync the CMSFilters instance with the new created filters
     filtersInstance.storeFiltersData();
